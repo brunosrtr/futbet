@@ -53,7 +53,7 @@ export default function Home() {
             <Sparkles size={12} /> 100% fictício · zero dinheiro real
           </span>
           <h1 className="mt-3 font-display text-4xl font-extrabold uppercase leading-none sm:text-5xl">
-            O futsal da galera <br /> agora tem <span className="text-brand">odds</span>.
+            O FutCristo <br /> agora tem <span className="text-brand">odds</span>.
           </h1>
           <p className="mt-3 text-sm text-slate-300 sm:text-base">
             Crie o jogo, defina as odds, compartilhe o link e veja quem entende de bola. Todo mundo começa com <b className="text-gold">MJ$ 1.000</b>.

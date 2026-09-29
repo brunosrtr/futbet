@@ -57,7 +57,7 @@ export default async function Image({ params }: { params: Promise<{ id: string }
           </div>
         ) : (
           <div style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center', fontSize: 64, fontWeight: 800 }}>
-            O futsal da galera agora tem odds.
+            O FutCristo agora tem odds.
           </div>
         )}
       </div>

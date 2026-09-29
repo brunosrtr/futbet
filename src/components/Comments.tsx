@@ -55,7 +55,7 @@ export default function Comments({ gameId, creatorId }: { gameId: string; creato
   return (
     <section className="card">
       <h2 className="flex items-center gap-2 border-b border-line px-4 py-3 font-display text-lg font-bold uppercase tracking-wide">
-        <MessageCircle size={18} className="text-brand" /> Resenha <span className="text-sm text-muted">({comments.length})</span>
+        <MessageCircle size={18} className="text-brand" /> Comentários <span className="text-sm text-muted">({comments.length})</span>
       </h2>
 
       {profile ? (
@@ -64,7 +64,7 @@ export default function Comments({ gameId, creatorId }: { gameId: string; creato
             value={text}
             onChange={(e) => setText(e.target.value)}
             maxLength={500}
-            placeholder="Manda a sua resenha…"
+            placeholder="Escreva um comentário…"
             className="input"
           />
           <button disabled={sending || !text.trim()} className="btn-primary px-3"><Send size={16} /></button>
