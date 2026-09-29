@@ -1,9 +1,12 @@
+'use client'
+
 import { useEffect, useMemo, useState } from 'react'
-import { Link, Navigate } from 'react-router-dom'
-import { supabase } from '../lib/supabase'
-import { useAuth } from '../context/AuthContext'
-import { fmtOdd, money, timeAgo } from '../lib/format'
-import type { Bet } from '../lib/types'
+import Link from 'next/link'
+import Redirect from '@/components/Redirect'
+import { supabase } from '@/lib/supabase'
+import { useAuth } from '@/context/AuthContext'
+import { fmtOdd, money, timeAgo } from '@/lib/format'
+import type { Bet } from '@/lib/types'
 
 const LABEL: Record<Bet['status'], { t: string; c: string }> = {
   pending: { t: 'Em aberto', c: 'bg-gold/10 text-gold' },
@@ -56,7 +59,7 @@ export default function MyBets() {
     }
   }, [bets])
 
-  if (!loading && !session) return <Navigate to="/entrar" replace />
+  if (!loading && !session) return <Redirect to="/entrar" />
 
   const list = (bets ?? []).filter((b) => filter === 'all' || b.status === filter)
 
@@ -94,13 +97,13 @@ export default function MyBets() {
         {bets === null && <div className="card h-40 animate-pulse" />}
         {bets && list.length === 0 && (
           <div className="card p-10 text-center text-sm text-muted">
-            Nenhuma aposta aqui. <Link to="/" className="font-semibold text-brand hover:underline">Ver jogos</Link>
+            Nenhuma aposta aqui. <Link href="/" className="font-semibold text-brand hover:underline">Ver jogos</Link>
           </div>
         )}
         {list.map((b) => {
           const s = LABEL[b.status]
           return (
-            <Link key={b.id} to={`/jogo/${b.game_id}`} className="card flex items-center gap-4 p-4 transition hover:border-slate-600">
+            <Link key={b.id} href={`/jogo/${b.game_id}`} className="card flex items-center gap-4 p-4 transition hover:border-slate-600">
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
                   <span className={`rounded px-2 py-0.5 text-[10px] font-bold uppercase ${s.c}`}>{s.t}</span>

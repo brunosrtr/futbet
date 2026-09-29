@@ -1,8 +1,10 @@
+'use client'
+
 import { Check, Lock } from 'lucide-react'
-import { useBetSlip } from '../context/BetSlipContext'
-import { fmtOdd } from '../lib/format'
-import { isMarketBettable } from '../lib/game'
-import type { Game, Market, Option } from '../lib/types'
+import { useBetSlip } from '@/context/BetSlipContext'
+import { fmtOdd } from '@/lib/format'
+import { isMarketBettable } from '@/lib/game'
+import type { Game, Market, Option } from '@/lib/types'
 
 export default function OddButton({ game, market, option, compact }: {
   game: Game; market: Market; option: Option; compact?: boolean

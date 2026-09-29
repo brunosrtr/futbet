@@ -1,4 +1,4 @@
-import { initials, teamColor } from '../lib/format'
+import { initials, teamColor } from '@/lib/format'
 
 export default function TeamBadge({ name, size = 'md' }: { name: string; size?: 'md' | 'lg' }) {
   const c = teamColor(name)

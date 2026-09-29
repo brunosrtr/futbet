@@ -1,3 +1,5 @@
+'use client'
+
 import { Plus, Trash2, X } from 'lucide-react'
 
 export type OptionDraft = { label: string; odd: string }

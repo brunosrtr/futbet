@@ -1,16 +1,19 @@
+'use client'
+
 import { useState } from 'react'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useRouter } from 'next/navigation'
 import { Plus, Rocket } from 'lucide-react'
 import { toast } from 'sonner'
-import { supabase } from '../lib/supabase'
-import { errMsg } from '../lib/format'
-import { useAuth } from '../context/AuthContext'
-import TeamBadge from '../components/TeamBadge'
-import MarketEditor, { TEMPLATES, cloneMarket, toPayload, validateMarket, type MarketDraft } from '../components/MarketEditor'
+import { supabase } from '@/lib/supabase'
+import { errMsg } from '@/lib/format'
+import { useAuth } from '@/context/AuthContext'
+import Redirect from '@/components/Redirect'
+import TeamBadge from '@/components/TeamBadge'
+import MarketEditor, { TEMPLATES, cloneMarket, toPayload, validateMarket, type MarketDraft } from '@/components/MarketEditor'
 
 export default function CreateGame() {
   const { session, loading } = useAuth()
-  const navigate = useNavigate()
+  const router = useRouter()
   const [home, setHome] = useState('')
   const [away, setAway] = useState('')
   const [startsAt, setStartsAt] = useState('')
@@ -20,7 +23,7 @@ export default function CreateGame() {
   const [extras, setExtras] = useState<MarketDraft[]>([])
   const [busy, setBusy] = useState(false)
 
-  if (!loading && !session) return <Navigate to="/entrar" replace />
+  if (!loading && !session) return <Redirect to="/entrar" />
 
   async function submit(e: React.FormEvent) {
     e.preventDefault()
@@ -46,7 +49,7 @@ export default function CreateGame() {
     setBusy(false)
     if (error) return toast.error(errMsg(error))
     toast.success('Jogo criado! Agora é só compartilhar o link 🔥')
-    navigate(`/jogo/${data}`)
+    router.push(`/jogo/${data}`)
   }
 
   const oddInput = (i: number, label: string) => (

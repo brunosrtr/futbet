@@ -1,11 +1,13 @@
+'use client'
+
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { MessageCircle, Send, Trash2 } from 'lucide-react'
 import { toast } from 'sonner'
-import { supabase } from '../lib/supabase'
-import { useAuth } from '../context/AuthContext'
-import { errMsg, teamColor, timeAgo } from '../lib/format'
-import type { Comment } from '../lib/types'
+import { supabase } from '@/lib/supabase'
+import { useAuth } from '@/context/AuthContext'
+import { errMsg, teamColor, timeAgo } from '@/lib/format'
+import type { Comment } from '@/lib/types'
 
 export default function Comments({ gameId, creatorId }: { gameId: string; creatorId: string }) {
   const { profile } = useAuth()
@@ -69,7 +71,7 @@ export default function Comments({ gameId, creatorId }: { gameId: string; creato
         </form>
       ) : (
         <div className="border-b border-line p-3 text-sm text-muted">
-          <Link to="/entrar" className="font-semibold text-brand hover:underline">Entre</Link> para comentar.
+          <Link href="/entrar" className="font-semibold text-brand hover:underline">Entre</Link> para comentar.
         </div>
       )}
 

@@ -1,11 +1,13 @@
+'use client'
+
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { Receipt, Trash2, X } from 'lucide-react'
 import { toast } from 'sonner'
-import { useBetSlip } from '../context/BetSlipContext'
-import { useAuth } from '../context/AuthContext'
-import { supabase } from '../lib/supabase'
-import { errMsg, fmtOdd, money } from '../lib/format'
+import { useBetSlip } from '@/context/BetSlipContext'
+import { useAuth } from '@/context/AuthContext'
+import { supabase } from '@/lib/supabase'
+import { errMsg, fmtOdd, money } from '@/lib/format'
 
 const QUICK = [10, 25, 50, 100]
 
@@ -103,7 +105,7 @@ function SlipBody({ onDone }: { onDone?: () => void }) {
             {busy ? 'Apostando…' : insufficient ? 'Saldo insuficiente' : `Apostar ${money(total)}`}
           </button>
         ) : (
-          <Link to="/entrar" onClick={onDone} className="btn-primary w-full py-3">Entre para apostar</Link>
+          <Link href="/entrar" onClick={onDone} className="btn-primary w-full py-3">Entre para apostar</Link>
         )}
         <button onClick={clear} className="flex w-full items-center justify-center gap-1 text-xs text-muted hover:text-white">
           <Trash2 size={12} /> Limpar cupom

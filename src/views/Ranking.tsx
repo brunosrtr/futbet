@@ -1,8 +1,10 @@
+'use client'
+
 import { useEffect, useState } from 'react'
-import { supabase } from '../lib/supabase'
-import { money, teamColor } from '../lib/format'
-import { useAuth } from '../context/AuthContext'
-import type { Profile } from '../lib/types'
+import { supabase } from '@/lib/supabase'
+import { money, teamColor } from '@/lib/format'
+import { useAuth } from '@/context/AuthContext'
+import type { Profile } from '@/lib/types'
 
 const MEDALS = ['🥇', '🥈', '🥉']
 

@@ -1,9 +1,12 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+'use client'
+
+import Link from 'next/link'
+import { useRouter, usePathname } from 'next/navigation'
 import { Gift, LogOut, Plus, Receipt, Trophy, Home } from 'lucide-react'
 import { toast } from 'sonner'
-import { useAuth } from '../context/AuthContext'
-import { supabase } from '../lib/supabase'
-import { errMsg, money } from '../lib/format'
+import { useAuth } from '@/context/AuthContext'
+import { supabase } from '@/lib/supabase'
+import { errMsg, money } from '@/lib/format'
 
 export const NAV = [
   { to: '/', label: 'Jogos', icon: Home },
@@ -14,16 +17,19 @@ export const NAV = [
 
 export function Logo() {
   return (
-    <Link to="/" className="flex items-center gap-2 font-display text-2xl font-extrabold tracking-tight">
+    <Link href="/" className="flex items-center gap-2 font-display text-2xl font-extrabold tracking-tight">
       <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand text-bg">⚽</span>
       <span>FUT<span className="text-brand">BET</span></span>
     </Link>
   )
 }
 
+export const isActivePath = (pathname: string, to: string) => (to === '/' ? pathname === '/' : pathname.startsWith(to))
+
 export default function Header() {
   const { profile, signOut } = useAuth()
-  const navigate = useNavigate()
+  const router = useRouter()
+  const pathname = usePathname()
 
   const bonusReady =
     !!profile && (!profile.last_bonus_at || Date.now() - new Date(profile.last_bonus_at).getTime() > 86_400_000)
@@ -40,18 +46,15 @@ export default function Header() {
         <Logo />
         <nav className="hidden items-center gap-1 md:flex">
           {NAV.map(({ to, label }) => (
-            <NavLink
+            <Link
               key={to}
-              to={to}
-              end={to === '/'}
-              className={({ isActive }) =>
-                `rounded-lg px-3 py-2 text-sm font-semibold transition ${
-                  isActive ? 'bg-panel-2 text-brand' : 'text-slate-300 hover:text-white'
-                }`
-              }
+              href={to}
+              className={`rounded-lg px-3 py-2 text-sm font-semibold transition ${
+                isActivePath(pathname, to) ? 'bg-panel-2 text-brand' : 'text-slate-300 hover:text-white'
+              }`}
             >
               {label}
-            </NavLink>
+            </Link>
           ))}
         </nav>
 
@@ -73,7 +76,7 @@ export default function Header() {
                 <div className="font-display text-lg font-bold text-brand">{money(profile.balance)}</div>
               </div>
               <button
-                onClick={async () => { await signOut(); navigate('/') }}
+                onClick={async () => { await signOut(); router.push('/') }}
                 title="Sair"
                 className="grid h-10 w-10 place-items-center rounded-lg border border-line bg-panel text-slate-400 transition hover:text-white"
               >
@@ -82,8 +85,8 @@ export default function Header() {
             </>
           ) : (
             <>
-              <Link to="/entrar" className="btn-ghost">Entrar</Link>
-              <Link to="/entrar?modo=cadastro" className="btn-primary hidden sm:inline-flex">Criar conta</Link>
+              <Link href="/entrar" className="btn-ghost">Entrar</Link>
+              <Link href="/entrar?modo=cadastro" className="btn-primary hidden sm:inline-flex">Criar conta</Link>
             </>
           )}
         </div>

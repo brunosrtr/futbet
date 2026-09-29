@@ -1,11 +1,13 @@
+'use client'
+
 import { useEffect, useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { Plus, Sparkles } from 'lucide-react'
-import { supabase } from '../lib/supabase'
-import { GAME_SELECT, hasStarted } from '../lib/game'
-import type { Game } from '../lib/types'
-import GameCard from '../components/GameCard'
-import { useAuth } from '../context/AuthContext'
+import { supabase } from '@/lib/supabase'
+import { GAME_SELECT, hasStarted } from '@/lib/game'
+import type { Game } from '@/lib/types'
+import GameCard from '@/components/GameCard'
+import { useAuth } from '@/context/AuthContext'
 
 const TABS = [
   { id: 'open', label: 'Abertos' },
@@ -57,8 +59,8 @@ export default function Home() {
             Crie o jogo, defina as odds, compartilhe o link e veja quem entende de bola. Todo mundo começa com <b className="text-gold">FC 1.000</b>.
           </p>
           <div className="mt-5 flex flex-wrap gap-2">
-            <Link to="/criar" className="btn-primary"><Plus size={16} /> Criar jogo</Link>
-            {!profile && <Link to="/entrar?modo=cadastro" className="btn-ghost">Ganhar FC 1.000 grátis</Link>}
+            <Link href="/criar" className="btn-primary"><Plus size={16} /> Criar jogo</Link>
+            {!profile && <Link href="/entrar?modo=cadastro" className="btn-ghost">Ganhar FC 1.000 grátis</Link>}
           </div>
         </div>
       </section>
@@ -85,7 +87,7 @@ export default function Home() {
         <div className="card flex flex-col items-center gap-3 p-10 text-center">
           <span className="text-4xl">🥅</span>
           <p className="text-muted">Nenhum jogo por aqui.</p>
-          <Link to="/criar" className="btn-primary"><Plus size={16} /> Criar o primeiro</Link>
+          <Link href="/criar" className="btn-primary"><Plus size={16} /> Criar o primeiro</Link>
         </div>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2">

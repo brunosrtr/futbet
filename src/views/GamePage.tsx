@@ -1,17 +1,19 @@
+'use client'
+
 import { useCallback, useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import Link from 'next/link'
 import { ArrowLeft, CalendarClock, MapPin, Share2, User } from 'lucide-react'
 import { toast } from 'sonner'
-import { supabase } from '../lib/supabase'
-import { GAME_SELECT, gameStatus, hasStarted, sortMarkets } from '../lib/game'
-import { dateTime, fmtOdd, money, timeAgo } from '../lib/format'
-import type { Bet, Game } from '../lib/types'
-import { useAuth } from '../context/AuthContext'
-import TeamBadge from '../components/TeamBadge'
-import StatusBadge from '../components/StatusBadge'
-import OddButton from '../components/OddButton'
-import Comments from '../components/Comments'
-import CreatorPanel from '../components/CreatorPanel'
+import { supabase } from '@/lib/supabase'
+import { GAME_SELECT, gameStatus, hasStarted, sortMarkets } from '@/lib/game'
+import { dateTime, fmtOdd, money, timeAgo } from '@/lib/format'
+import type { Bet, Game } from '@/lib/types'
+import { useAuth } from '@/context/AuthContext'
+import TeamBadge from '@/components/TeamBadge'
+import StatusBadge from '@/components/StatusBadge'
+import OddButton from '@/components/OddButton'
+import Comments from '@/components/Comments'
+import CreatorPanel from '@/components/CreatorPanel'
 
 const BET_TONE: Record<Bet['status'], string> = {
   pending: 'text-slate-300',
@@ -20,19 +22,18 @@ const BET_TONE: Record<Bet['status'], string> = {
   void: 'text-slate-500',
 }
 
-export default function GamePage() {
-  const { id } = useParams()
+export default function GamePage({ id }: { id: string }) {
   const { profile } = useAuth()
   const [game, setGame] = useState<Game | null | undefined>(undefined)
   const [bets, setBets] = useState<Bet[]>([])
 
   const load = useCallback(async () => {
     const [g, b] = await Promise.all([
-      supabase.from('games').select(GAME_SELECT).eq('id', id!).maybeSingle(),
+      supabase.from('games').select(GAME_SELECT).eq('id', id).maybeSingle(),
       supabase
         .from('bets')
         .select('*, profile:profiles(username), option:options(label), market:markets(title)')
-        .eq('game_id', id!)
+        .eq('game_id', id)
         .order('created_at', { ascending: false })
         .limit(100),
     ])
@@ -57,7 +58,7 @@ export default function GamePage() {
     return (
       <div className="card p-10 text-center">
         <p className="text-muted">Jogo não encontrado.</p>
-        <Link to="/" className="btn-primary mt-4">Voltar</Link>
+        <Link href="/" className="btn-primary mt-4">Voltar</Link>
       </div>
     )
 
@@ -81,7 +82,7 @@ export default function GamePage() {
   return (
     <div className="space-y-5">
       <div className="flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-1 text-sm text-muted hover:text-white"><ArrowLeft size={16} /> Jogos</Link>
+        <Link href="/" className="flex items-center gap-1 text-sm text-muted hover:text-white"><ArrowLeft size={16} /> Jogos</Link>
         <button onClick={share} className="btn-ghost py-2"><Share2 size={16} /> Compartilhar</button>
       </div>
 

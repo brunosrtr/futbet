@@ -7,8 +7,9 @@ Casa de apostas **fictícia** de futsal entre amigos. Moeda: FutCoins (FC), sem 
 - Todo mundo começa com FC 1.000, com bônus diário de FC 100
 - O criador define os resultados e os pagamentos (stake × odd) caem na hora
 - Comentários, feed de apostas e saldo ao vivo (Supabase Realtime), além de ranking
+- Link do jogo gera preview com times e odds no WhatsApp (Open Graph dinâmico)
 
-**Stack:** Vite + React + Tailwind (Vercel) · Supabase (Auth + Postgres + Realtime).
+**Stack:** Next.js (App Router) + Tailwind (Vercel) · Supabase (Auth + Postgres + Realtime).
 Toda a lógica de saldo roda em funções SQL no banco, então ninguém edita saldo pelo navegador.
 
 ## Deploy (~5 min)
@@ -20,8 +21,8 @@ Toda a lógica de saldo roda em funções SQL no banco, então ninguém edita sa
 2. **Vercel**:
    ```bash
    vercel
-   vercel env add VITE_SUPABASE_URL
-   vercel env add VITE_SUPABASE_ANON_KEY
+   vercel env add NEXT_PUBLIC_SUPABASE_URL
+   vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY
    vercel --prod
    ```
    (ou importe o repositório em vercel.com/new e adicione as 2 variáveis.)

@@ -1,10 +1,13 @@
+'use client'
+
 import { useState } from 'react'
-import { Navigate, useNavigate, useSearchParams } from 'react-router-dom'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { toast } from 'sonner'
-import { supabase } from '../lib/supabase'
-import { errMsg } from '../lib/format'
-import { useAuth } from '../context/AuthContext'
-import { Logo } from '../components/Header'
+import { supabase } from '@/lib/supabase'
+import { errMsg } from '@/lib/format'
+import { useAuth } from '@/context/AuthContext'
+import { Logo } from '@/components/Header'
+import Redirect from '@/components/Redirect'
 
 const translate = (m: string) =>
   m.includes('Invalid login') ? 'Email ou senha incorretos'
@@ -14,16 +17,16 @@ const translate = (m: string) =>
   : m
 
 export default function Login() {
-  const [params] = useSearchParams()
+  const params = useSearchParams()
   const [mode, setMode] = useState<'login' | 'signup'>(params.get('modo') === 'cadastro' ? 'signup' : 'login')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [username, setUsername] = useState('')
   const [busy, setBusy] = useState(false)
   const { session } = useAuth()
-  const navigate = useNavigate()
+  const router = useRouter()
 
-  if (session) return <Navigate to="/" replace />
+  if (session) return <Redirect to="/" />
 
   async function submit(e: React.FormEvent) {
     e.preventDefault()
@@ -46,7 +49,7 @@ export default function Login() {
         const { error } = await supabase.auth.signInWithPassword({ email, password })
         if (error) throw error
       }
-      navigate('/')
+      router.push('/')
     } catch (err) {
       toast.error(translate(errMsg(err)))
     } finally {

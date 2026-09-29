@@ -1,5 +1,5 @@
-import type { Game } from '../lib/types'
-import { gameStatus } from '../lib/game'
+import type { Game } from '@/lib/types'
+import { gameStatus } from '@/lib/game'
 
 const TONES = {
   open: 'bg-brand/10 text-brand ring-brand/30',

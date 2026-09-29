@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { ChevronRight, MapPin, Users } from 'lucide-react'
 import TeamBadge from './TeamBadge'
 import StatusBadge from './StatusBadge'
 import OddButton from './OddButton'
-import { dateTime, money } from '../lib/format'
-import { sortMarkets } from '../lib/game'
-import type { Game } from '../lib/types'
+import { dateTime, money } from '@/lib/format'
+import { sortMarkets } from '@/lib/game'
+import type { Game } from '@/lib/types'
 
 export default function GameCard({ game }: { game: Game }) {
   const markets = sortMarkets(game.markets)
@@ -16,7 +16,7 @@ export default function GameCard({ game }: { game: Game }) {
 
   return (
     <div className="card group overflow-hidden transition hover:border-slate-600">
-      <Link to={`/jogo/${game.id}`} className="block p-4 pb-3">
+      <Link href={`/jogo/${game.id}`} className="block p-4 pb-3">
         <div className="mb-3 flex items-center justify-between gap-2 text-xs text-muted">
           <span className="truncate">{dateTime(game.starts_at)}{game.location && <> · <MapPin size={11} className="inline" /> {game.location}</>}</span>
           <StatusBadge game={game} />
@@ -42,7 +42,7 @@ export default function GameCard({ game }: { game: Game }) {
       )}
 
       <Link
-        to={`/jogo/${game.id}`}
+        href={`/jogo/${game.id}`}
         className="mt-3 flex items-center justify-between border-t border-line px-4 py-2.5 text-xs text-muted transition hover:bg-panel-2"
       >
         <span className="flex items-center gap-3">

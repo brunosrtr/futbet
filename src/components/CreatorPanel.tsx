@@ -1,9 +1,11 @@
+'use client'
+
 import { useState } from 'react'
 import { Ban, Check, Flag, Lock, LockOpen, Plus, Settings2 } from 'lucide-react'
 import { toast } from 'sonner'
-import { supabase } from '../lib/supabase'
-import { errMsg, fmtOdd } from '../lib/format'
-import type { Game, Market } from '../lib/types'
+import { supabase } from '@/lib/supabase'
+import { errMsg, fmtOdd } from '@/lib/format'
+import type { Game, Market } from '@/lib/types'
 import MarketEditor, { TEMPLATES, cloneMarket, toPayload, validateMarket, type MarketDraft } from './MarketEditor'
 
 async function call(fn: string, args: Record<string, unknown>, success: string) {

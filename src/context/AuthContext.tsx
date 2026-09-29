@@ -1,7 +1,9 @@
+'use client'
+
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react'
 import type { Session } from '@supabase/supabase-js'
-import { supabase } from '../lib/supabase'
-import type { Profile } from '../lib/types'
+import { supabase } from '@/lib/supabase'
+import type { Profile } from '@/lib/types'
 
 type AuthCtx = {
   session: Session | null
