@@ -76,7 +76,7 @@ export default function Comments({ gameId, creatorId }: { gameId: string; creato
       )}
 
       <ul className="scrollbar-thin max-h-[480px] divide-y divide-line overflow-y-auto">
-        {comments.length === 0 && <li className="p-6 text-center text-sm text-muted">Ninguém falou nada ainda. Começa a zoeira!</li>}
+        {comments.length === 0 && <li className="p-6 text-center text-sm text-muted">Nenhum comentário ainda.</li>}
         {comments.map((c) => {
           const name = c.profile?.username ?? '???'
           return (
