@@ -33,7 +33,7 @@ export default function Providers({ children }: { children: ReactNode }) {
           <BetSlip />
         </div>
         <footer className="hidden border-t border-line py-6 text-center text-xs text-muted lg:block">
-          MigasBet · diversão entre amigos · moeda fictícia (FC), sem dinheiro real
+          MigasBet · diversão entre amigos · moeda fictícia (MJ$), sem dinheiro real
         </footer>
         <MobileNav />
         <Toaster theme="dark" position="top-center" richColors />

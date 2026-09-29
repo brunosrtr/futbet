@@ -44,7 +44,7 @@ export default function Login() {
           setMode('login')
           return
         }
-        toast.success(`Bem-vindo, ${u}! Você ganhou FC 1.000 🎉`)
+        toast.success(`Bem-vindo, ${u}! Você ganhou MJ$ 1.000 🎉`)
       } else {
         const { error } = await supabase.auth.signInWithPassword({ email, password })
         if (error) throw error
@@ -63,7 +63,7 @@ export default function Login() {
         <div className="bg-gradient-to-br from-[#1a2a0f] to-panel p-6 text-center">
           <div className="flex justify-center"><Logo /></div>
           <p className="mt-2 text-sm text-slate-300">
-            {mode === 'signup' ? 'Crie sua conta e ganhe FC 1.000 fictícios pra começar.' : 'Bora pra resenha.'}
+            {mode === 'signup' ? 'Crie sua conta e ganhe MJ$ 1.000 fictícios pra começar.' : 'Bora pra resenha.'}
           </p>
         </div>
         <div className="grid grid-cols-2 border-y border-line">
@@ -94,7 +94,7 @@ export default function Login() {
               autoComplete={mode === 'login' ? 'current-password' : 'new-password'} />
           </div>
           <button disabled={busy} className="btn-primary w-full py-3">
-            {busy ? 'Aguarde…' : mode === 'login' ? 'Entrar' : 'Criar conta e ganhar FC 1.000'}
+            {busy ? 'Aguarde…' : mode === 'login' ? 'Entrar' : 'Criar conta e ganhar MJ$ 1.000'}
           </button>
           <p className="text-center text-[11px] text-muted">Site de diversão entre amigos. Nenhum dinheiro real é usado.</p>
         </form>

@@ -37,7 +37,7 @@ export default function Header() {
   async function claimBonus() {
     const { error } = await supabase.rpc('claim_daily_bonus')
     if (error) toast.error(errMsg(error))
-    else toast.success('Bônus diário resgatado: + FC 100,00 🎁')
+    else toast.success('Bônus diário resgatado: + MJ$ 100,00 🎁')
   }
 
   return (

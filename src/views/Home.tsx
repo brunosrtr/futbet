@@ -56,11 +56,11 @@ export default function Home() {
             O futsal da galera <br /> agora tem <span className="text-brand">odds</span>.
           </h1>
           <p className="mt-3 text-sm text-slate-300 sm:text-base">
-            Crie o jogo, defina as odds, compartilhe o link e veja quem entende de bola. Todo mundo começa com <b className="text-gold">FC 1.000</b>.
+            Crie o jogo, defina as odds, compartilhe o link e veja quem entende de bola. Todo mundo começa com <b className="text-gold">MJ$ 1.000</b>.
           </p>
           <div className="mt-5 flex flex-wrap gap-2">
             <Link href="/criar" className="btn-primary"><Plus size={16} /> Criar jogo</Link>
-            {!profile && <Link href="/entrar?modo=cadastro" className="btn-ghost">Ganhar FC 1.000 grátis</Link>}
+            {!profile && <Link href="/entrar?modo=cadastro" className="btn-ghost">Ganhar MJ$ 1.000 grátis</Link>}
           </div>
         </div>
       </section>

@@ -24,6 +24,7 @@ function SlipBody({ onDone }: { onDone?: () => void }) {
   async function placeAll() {
     const ready = selections.filter((s) => stakeOf(s.optionId) > 0)
     if (!ready.length) return toast.error('Informe o valor de pelo menos uma aposta')
+    if (ready.some((s) => stakeOf(s.optionId) < 1)) return toast.error('Aposta mínima: MJ$ 1,00')
     setBusy(true)
     let ok = 0
     for (const s of ready) {
@@ -67,13 +68,13 @@ function SlipBody({ onDone }: { onDone?: () => void }) {
               </div>
               <div className="mt-2.5 flex items-center gap-2">
                 <div className="relative flex-1">
-                  <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-xs text-muted">FC</span>
+                  <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-xs text-muted">MJ$</span>
                   <input
                     inputMode="decimal"
                     placeholder="0,00"
                     value={stakes[s.optionId] ?? ''}
                     onChange={(e) => setStake(s.optionId, e.target.value.replace(/[^\d.,]/g, ''))}
-                    className="input py-2 pl-9 font-semibold"
+                    className="input py-2 pl-11 font-semibold"
                   />
                 </div>
                 <div className="text-right text-xs leading-tight">

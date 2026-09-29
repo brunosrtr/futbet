@@ -1,10 +1,10 @@
 # ⚽ FutBet
 
-Casa de apostas **fictícia** de futsal entre amigos. Moeda: FutCoins (FC), sem dinheiro real.
+Casa de apostas **fictícia** de futsal entre amigos. Moeda: FutCoins (MJ$), sem dinheiro real.
 
 - Qualquer um cria um jogo, define as odds e compartilha o link
 - Mercado principal (Casa / Empate / Fora) + opcionais (expulsão, quem marca, total de gols…)
-- Todo mundo começa com FC 1.000, com bônus diário de FC 100
+- Todo mundo começa com MJ$ 1.000, com bônus diário de MJ$ 100
 - O criador define os resultados e os pagamentos (stake × odd) caem na hora
 - Comentários, feed de apostas e saldo ao vivo (Supabase Realtime), além de ranking
 - Link do jogo gera preview com times e odds no WhatsApp (Open Graph dinâmico)

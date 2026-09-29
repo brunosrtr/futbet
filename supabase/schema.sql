@@ -1,6 +1,6 @@
 -- =====================================================================
 -- FutBet — schema completo (cole tudo no SQL Editor do Supabase e rode)
--- Dinheiro fictício: FutCoins (FC). Toda a lógica de saldo roda aqui
+-- Dinheiro fictício: FutCoins (MJ$). Toda a lógica de saldo roda aqui
 -- no banco, via funções security definer — o cliente nunca altera saldo.
 -- =====================================================================
 
@@ -77,7 +77,7 @@ create index if not exists bets_user_idx on public.bets(user_id);
 create index if not exists bets_option_idx on public.bets(option_id);
 create index if not exists comments_game_idx on public.comments(game_id);
 
--- ---------- Perfil automático ao criar conta (saldo inicial FC 1000) ----------
+-- ---------- Perfil automático ao criar conta (saldo inicial MJ$ 1000) ----------
 create or replace function public.handle_new_user()
 returns trigger language plpgsql security definer set search_path = public as $$
 begin
@@ -236,7 +236,7 @@ declare
   v_balance numeric; v_bet uuid; v_stake numeric := round(p_stake, 2);
 begin
   if auth.uid() is null then raise exception 'Faça login para apostar'; end if;
-  if v_stake is null or v_stake < 1 then raise exception 'Aposta mínima: FC 1,00'; end if;
+  if v_stake is null or v_stake < 1 then raise exception 'Aposta mínima: MJ$ 1,00'; end if;
 
   select * into v_opt from options where id = p_option_id;
   if not found then raise exception 'Opção não encontrada'; end if;
@@ -325,7 +325,7 @@ begin
   update games set status = 'cancelled' where id = p_game_id;
 end $$;
 
--- Bônus diário de FC 100 (pra ninguém ficar quebrado pra sempre)
+-- Bônus diário de MJ$ 100 (pra ninguém ficar quebrado pra sempre)
 create or replace function public.claim_daily_bonus()
 returns numeric language plpgsql security definer set search_path = public as $$
 declare v_profile public.profiles;

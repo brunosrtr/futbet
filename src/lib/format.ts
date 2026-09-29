@@ -1,5 +1,5 @@
 export const money = (n: number | string | null | undefined) =>
-  'FC ' + Number(n ?? 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+  'MJ$ ' + Number(n ?? 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 
 export const fmtOdd = (n: number | string) => Number(n).toFixed(2)
 
