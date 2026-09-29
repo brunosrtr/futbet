@@ -22,7 +22,7 @@ Toda a lógica de saldo roda em funções SQL no banco, então ninguém edita sa
    ```bash
    vercel
    vercel env add NEXT_PUBLIC_SUPABASE_URL
-   vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY
+   vercel env add NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
    vercel --prod
    ```
    (ou importe o repositório em vercel.com/new e adicione as 2 variáveis.)
