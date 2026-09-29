@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = `${game.home_team} x ${game.away_team}`
   const odds = main?.options.map((o) => `${o.label} ${fmtOdd(o.odd)}`).join(' · ')
   const description = odds ? `Odds: ${odds}. Bora apostar?` : 'Bora apostar?'
-  return { title, description, openGraph: { title: `${title} — FutBet`, description } }
+  return { title, description, openGraph: { title: `${title} — MigasBet`, description } }
 }
 
 export default async function Page({ params }: Props) {

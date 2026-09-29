@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const barlow = Barlow_Condensed({ subsets: ['latin'], weight: ['600', '700', '800'], variable: '--font-barlow' })
 
 export const metadata: Metadata = {
-  title: { default: 'FutBet — apostas de futsal entre amigos', template: '%s · FutBet' },
+  title: { default: 'MigasBet — apostas de futsal entre amigos', template: '%s · MigasBet' },
   description: 'Crie jogos de futsal, defina as odds e aposte com os amigos. 100% fictício, sem dinheiro real.',
 }
 

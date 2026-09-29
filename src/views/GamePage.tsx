@@ -70,7 +70,7 @@ export default function GamePage({ id }: { id: string }) {
 
   async function share() {
     const url = window.location.href
-    const title = `${game!.home_team} x ${game!.away_team} — FutBet`
+    const title = `${game!.home_team} x ${game!.away_team} — MigasBet`
     if (navigator.share) {
       try { await navigator.share({ title, text: `Bora apostar em ${game!.home_team} x ${game!.away_team}!`, url }) } catch { /* cancelado */ }
     } else {

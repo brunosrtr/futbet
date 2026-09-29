@@ -19,7 +19,7 @@ export function Logo() {
   return (
     <Link href="/" className="flex items-center gap-2 font-display text-2xl font-extrabold tracking-tight">
       <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand text-bg">⚽</span>
-      <span>FUT<span className="text-brand">BET</span></span>
+      <span>MIGAS<span className="text-brand">BET</span></span>
     </Link>
   )
 }

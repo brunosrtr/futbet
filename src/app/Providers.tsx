@@ -12,7 +12,7 @@ import BetSlip from '@/components/BetSlip'
 function Setup() {
   return (
     <div className="mx-auto max-w-lg p-8 text-center">
-      <h1 className="font-display text-3xl font-bold">FutBet — configuração</h1>
+      <h1 className="font-display text-3xl font-bold">MigasBet — configuração</h1>
       <p className="mt-3 text-sm text-slate-400">
         Defina <code className="text-brand">NEXT_PUBLIC_SUPABASE_URL</code> e{' '}
         <code className="text-brand">NEXT_PUBLIC_SUPABASE_ANON_KEY</code> (arquivo .env local ou variáveis de
@@ -33,7 +33,7 @@ export default function Providers({ children }: { children: ReactNode }) {
           <BetSlip />
         </div>
         <footer className="hidden border-t border-line py-6 text-center text-xs text-muted lg:block">
-          FutBet · diversão entre amigos · moeda fictícia (FC), sem dinheiro real
+          MigasBet · diversão entre amigos · moeda fictícia (FC), sem dinheiro real
         </footer>
         <MobileNav />
         <Toaster theme="dark" position="top-center" richColors />

@@ -4,7 +4,7 @@ import { fmtOdd, teamColor, initials } from '@/lib/format'
 
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
-export const alt = 'Jogo no FutBet'
+export const alt = 'Jogo no MigasBet'
 
 export default async function Image({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
@@ -31,7 +31,7 @@ export default async function Image({ params }: { params: Promise<{ id: string }
       <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%', background: '#0b1018', color: '#f1f5f9', padding: 56 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div style={{ display: 'flex', fontSize: 44, fontWeight: 800 }}>
-            ⚽ FUT<span style={{ color: '#c6ff3d' }}>BET</span>
+            ⚽ MIGAS<span style={{ color: '#c6ff3d' }}>BET</span>
           </div>
           <div style={{ display: 'flex', fontSize: 24, color: '#8190a8' }}>apostas fictícias entre amigos</div>
         </div>
