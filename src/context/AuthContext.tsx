@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react'
+import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react'
 import type { Session } from '@supabase/supabase-js'
 import { supabase } from '@/lib/supabase'
 import type { Profile } from '@/lib/types'
@@ -11,6 +11,8 @@ type AuthCtx = {
   loading: boolean
   refreshProfile: () => Promise<void>
   signOut: () => Promise<void>
+  /** Segura atualizações de saldo por `ms` (para não entregar o resultado antes da animação) */
+  holdBalance: (ms: number) => void
 }
 
 const Ctx = createContext<AuthCtx>(null!)
@@ -20,6 +22,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [profile, setProfile] = useState<Profile | null>(null)
   const [loading, setLoading] = useState(true)
   const uid = session?.user.id
+  const holdUntil = useRef(0)
+  const holdBalance = useCallback((ms: number) => { holdUntil.current = Date.now() + ms }, [])
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
@@ -43,7 +47,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const ch = supabase
       .channel(`profile-${uid}`)
       .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'profiles', filter: `id=eq.${uid}` },
-        (p) => setProfile(p.new as Profile))
+        (p) => {
+          const wait = holdUntil.current - Date.now()
+          if (wait > 0) setTimeout(() => setProfile(p.new as Profile), wait)
+          else setProfile(p.new as Profile)
+        })
       .subscribe()
     return () => { supabase.removeChannel(ch) }
   }, [uid, refreshProfile])
@@ -53,7 +61,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setProfile(null)
   }
 
-  return <Ctx.Provider value={{ session, profile, loading, refreshProfile, signOut }}>{children}</Ctx.Provider>
+  return <Ctx.Provider value={{ session, profile, loading, refreshProfile, signOut, holdBalance }}>{children}</Ctx.Provider>
 }
 
 export const useAuth = () => useContext(Ctx)

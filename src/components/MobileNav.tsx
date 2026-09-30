@@ -7,7 +7,7 @@ import { NAV, isActivePath } from './Header'
 export default function MobileNav() {
   const pathname = usePathname()
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-4 border-t border-line bg-bg/95 backdrop-blur-xl md:hidden">
+    <nav className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-5 border-t border-line bg-bg/95 backdrop-blur-xl lg:hidden">
       {NAV.map(({ to, label, icon: Icon }) => (
         <Link
           key={to}

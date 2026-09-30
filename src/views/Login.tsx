@@ -63,7 +63,7 @@ export default function Login() {
         <div className="bg-gradient-to-br from-[#1a2a0f] to-panel p-6 text-center">
           <div className="flex justify-center"><Logo /></div>
           <p className="mt-2 text-sm text-slate-300">
-            {mode === 'signup' ? 'Crie sua conta e ganhe MJ$ 1.000 fictícios pra começar.' : 'Bora pra resenha.'}
+            {mode === 'signup' ? 'Crie sua conta e ganhe MJ$ 1.000 fictícios pra começar.' : 'Bem-vindo de volta!'}
           </p>
         </div>
         <div className="grid grid-cols-2 border-y border-line">

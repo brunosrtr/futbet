@@ -1,6 +1,7 @@
 'use client'
 
 import type { ReactNode } from 'react'
+import { usePathname } from 'next/navigation'
 import { Toaster } from 'sonner'
 import { AuthProvider } from '@/context/AuthContext'
 import { BetSlipProvider } from '@/context/BetSlipContext'
@@ -23,14 +24,15 @@ function Setup() {
 }
 
 export default function Providers({ children }: { children: ReactNode }) {
+  const casino = usePathname().startsWith('/cassino')
   if (!isConfigured) return <Setup />
   return (
     <AuthProvider>
       <BetSlipProvider>
         <Header />
-        <div className="mx-auto grid max-w-7xl gap-6 px-4 pb-28 pt-6 lg:grid-cols-[minmax(0,1fr)_340px] lg:pb-10">
+        <div className={`mx-auto grid max-w-7xl gap-6 px-4 pb-28 pt-6 lg:pb-10 ${casino ? '' : 'lg:grid-cols-[minmax(0,1fr)_340px]'}`}>
           <main className="min-w-0">{children}</main>
-          <BetSlip />
+          {!casino && <BetSlip />}
         </div>
         <footer className="hidden border-t border-line py-6 text-center text-xs text-muted lg:block">
           MigasBet · diversão entre amigos · moeda fictícia (MJ$), sem dinheiro real

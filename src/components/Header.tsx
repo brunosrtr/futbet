@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
-import { Gift, LogOut, Plus, Receipt, Trophy, Home } from 'lucide-react'
+import { Dices, Gift, LogOut, Plus, Receipt, Trophy, Home } from 'lucide-react'
 import { toast } from 'sonner'
 import { useAuth } from '@/context/AuthContext'
 import { supabase } from '@/lib/supabase'
@@ -11,6 +11,7 @@ import { errMsg, money } from '@/lib/format'
 export const NAV = [
   { to: '/', label: 'Jogos', icon: Home },
   { to: '/criar', label: 'Criar jogo', icon: Plus },
+  { to: '/cassino', label: 'Cassino', icon: Dices },
   { to: '/minhas-apostas', label: 'Minhas apostas', icon: Receipt },
   { to: '/ranking', label: 'Ranking', icon: Trophy },
 ]
@@ -44,7 +45,7 @@ export default function Header() {
     <header className="sticky top-0 z-40 border-b border-line/70 bg-bg/85 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center gap-6 px-4">
         <Logo />
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-1 lg:flex">
           {NAV.map(({ to, label }) => (
             <Link
               key={to}

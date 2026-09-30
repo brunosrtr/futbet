@@ -7,6 +7,7 @@ Casa de apostas **fictícia** de futsal entre amigos. Moeda: FutCoins (MJ$), sem
 - Todo mundo começa com MJ$ 1.000, com bônus diário de MJ$ 100
 - O criador define os resultados e os pagamentos (stake × odd) caem na hora
 - Comentários, feed de apostas e saldo ao vivo (Supabase Realtime), além de ranking
+- **Cassino**: roleta, caça-níquel, mines e foguetinho (sorteios feitos no banco, com margem da casa de 3–5%)
 - Link do jogo gera preview com times e odds no WhatsApp (Open Graph dinâmico)
 
 **Stack:** Next.js (App Router) + Tailwind (Vercel) · Supabase (Auth + Postgres + Realtime).
@@ -15,7 +16,7 @@ Toda a lógica de saldo roda em funções SQL no banco, então ninguém edita sa
 ## Deploy (~5 min)
 
 1. **Supabase**: crie um projeto em https://supabase.com/dashboard
-   - **SQL Editor** → cole `supabase/schema.sql` → Run
+   - **SQL Editor** → cole `supabase/schema.sql` → Run; depois cole `supabase/casino.sql` → Run
    - **Authentication → Sign In / Providers → Email**: desative *Confirm email* (assim os amigos entram direto)
    - **Project Settings → API**: copie a *Project URL* e a *anon public key*
 2. **Vercel**:
